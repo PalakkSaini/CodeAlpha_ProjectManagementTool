@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ProjectFlow Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= LOGIN SCREEN =================  -->
+    <section class="login-screen" id="loginScreen">
+        <div class="login-container">
+
+            <div class="login-left">
+                <h1>ProjectFlow</h1>
+                <p>Manage your projects like a pro.</p>
+            </div>
+
+            <div class="login-right">
+                <form id="loginForm">
+                    <h2>Welcome Back</h2>
+
+                    <input id="email" type="email" placeholder="Enter email" required>
+                    <input id="password" type="password" placeholder="Enter password" required>
+
+                    <div class="remember-row">
+                        <label class="remember-check">
+                            <input type="checkbox">
+                            <span>Remember me</span>
+                        </label>
+
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+
+                    <!-- Modal should be OUTSIDE remember-row -->
+                    <div class="forgot-modal" id="forgotModal">
+                        <div class="forgot-content">
+                            <h3>Reset Password</h3>
+                            <p>Enter your email to receive reset link.</p>
+                            <input type="email" id="resetEmail" placeholder="Enter your email">
+                            <button id="sendReset" class="btn-primary">Send Reset Link</button>
+                            <span class="close-forgot" id="closeForgot">✕</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= MAIN APP ================= -->
+    <div class="app-container" id="appContainer" style="display:none;">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="image/logo.png" alt="PF Pro Logo">
+            </div>
+
+            <ul class="menu">
+                <li data-section="overviewsgrids" class="active">Dashboard</li>
+                <li data-section="projectsSection">Projects</li>
+                <li data-section="boardSection">Tasks</li>
+                <li data-section="calendarSection">Calendar</li>
+                <li data-section="analyticsSection">Analytics</li>
+                <li data-section="teams">Team</li>
+                <li data-section="activitySection">Activity</li>
+                <li data-section="settingsSection">Settings</li>
+            </ul>
+
+            <button id="logoutBtn" class="btn-danger">Logout</button>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="search-box">
+                    <input type="text" placeholder="Search anything...">
+                </div>
+
+                <div class="topbar-right">
+                    <div class="profile">
+                        <img src="https://i.pravatar.cc/40?img=1">
+                        <span>Palak</span>
+                    </div>
+
+                    <div class="notification-wrapper">
+                        <div class="notification-icon" id="notifyBtn">
+                            🔔
+                            <span class="badge">3</span>
+                        </div>
+
+                        <div class="notification-dropdown" id="notifyDropdown">
+                            <p>New Task Assigned</p>
+                            <p>Project Updated</p>
+                            <p>Deadline Reminder</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section id="overviewsgrids">
+                <section class="overview grid">
+
+                    <div class="card">
+                        <h3>Total Projects</h3>
+                        <p id="totalProjects">1</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Total Tasks</h3>
+                        <p id="totalTasks">0</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Completed</h3>
+                        <p id="completedTasks">0</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Pending</h3>
+                        <p id="pendingTasks">0</p>
+                    </div>
+
+                </section>
+            </section>
+
+            <!-- TASK BOARD -->
+            <section class="board-wrapper" id="boardSection">
+                <div class="board-header">
+                    <h2>Project Task Board</h2>
+
+                    <div class="add-task-inline">
+                        <input type="text" placeholder="Task Title">
+                        <select>
+                            <option>To Do</option>
+                            <option>In Progress</option>
+                            <option>Done</option>
+                        </select>
+                        <button class="add-btn">Add Task</button>
+                    </div>
+                </div>
+
+                <div class="kanban-board">
+                    <div class="board-column"></div>
+                    <div class="board-column"></div>
+                    <div class="board-column"></div>
+                </div>
+            </section>
+
+
+            <!-- TEAM -->
+            <section class="team-section" id="teams">
+                <h2>Team Members</h2>
+
+                <div class="team-slider">
+                    <div class="team-slider-track">
+
+                        <div class="member-card">
+                            <img src="image/Preeti.jpg">
+                            <h4>Preeti</h4>
+                            <p>Frontend Developer</p>
+                        </div>
+
+                        <div class="member-card">
+                            <img src="image/Rahul.jpg">
+                            <h4>Rahul</h4>
+                            <p>Backend Developer</p>
+                        </div>
+
+                        <div class="member-card">
+                            <img src="image/Shree.jpg">
+                            <h4>Shree</h4>
+                            <p>UI/UX Designer</p>
+                        </div>
+
+                        <div class="member-card">
+                            <img src="image/Ayush.jpg">
+                            <h4>Ayush</h4>
+                            <p>Database Engineer</p>
+                        </div>
+
+                        <div class="member-card">
+                            <img src="image/Rishabh.jpg">
+                            <h4>Rishabh</h4>
+                            <p>Project Manager</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACTIVITY (FIXED) -->
+            <section id="activitySection" style="display:none;">
+
+                <section class="activity-section">
+                    <h2>Recent Activity</h2>
+
+                    <div class="activity-list">
+
+                        <div class="activity-item">
+                            <div class="activity-header">
+                                <span>Project created</span>
+                                <span class="arrow">▼</span>
+                            </div>
+                            <div class="activity-body">
+                                New project "Website Redesign" was created on 2 March 2026.
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-header">
+                                <span>Task completed</span>
+                                <span class="arrow">▼</span>
+                            </div>
+                            <div class="activity-body">
+                                Task "Design Homepage UI" marked as completed.
+                            </div>
+                        </div>
+
+                        <div class="activity-item">
+                            <div class="activity-header">
+                                <span>New member added</span>
+                                <span class="arrow">▼</span>
+                            </div>
+                            <div class="activity-body">
+                                Aman joined the project as Backend Developer.
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </section>
+            <!-- ================= CALENDAR ================= -->
+            <section id="calendarSection" style="display:none;">
+
+                <div class="card">
+                    <h2 style="margin-bottom:20px;">Project Calendar</h2>
+
+                    <div class="calendar-container">
+
+                        <div class="calendar-header">
+                            <button id="prevMonth" class="btn-primary">◀</button>
+                            <h3 id="monthYear"></h3>
+                            <button id="nextMonth" class="btn-primary">▶</button>
+                        </div>
+
+                        <div class="calendar-grid" id="calendarGrid"></div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ================= ANALYTICS ================= -->
+            <section id="analyticsSection" style="display:none;">
+
+                <div class="analytics-container">
+
+                    <h2>Project Analytics</h2>
+
+                    <div class="analytics-cards">
+
+                        <div class="analytics-card">
+                            <h3>Total Projects</h3>
+                            <p class="counter" data-target="12">0</p>
+                        </div>
+
+                        <div class="analytics-card">
+                            <h3>Completed Tasks</h3>
+                            <p class="counter" data-target="46">0</p>
+                        </div>
+
+                        <div class="analytics-card">
+                            <h3>Pending Tasks</h3>
+                            <p class="counter" data-target="38">0</p>
+                        </div>
+
+                    </div>
+
+                    <div class="progress-section">
+                        <h3>Overall Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ================= PROJECTS SECTION ================= -->
+            <section id="projectsSection" style="display:none;">
+
+                <div class="projects-container">
+
+                    <div class="projects-header">
+                        <h2>Projects</h2>
+
+                        <div class="project-add">
+                            <input type="text" id="projectInput" placeholder="Enter project name">
+                            <button id="addProjectBtn" class="btn-primary">Add Project</button>
+                        </div>
+                    </div>
+
+                    <div id="projectList" class="project-grid">
+                        <!-- Projects will render here -->
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ================= SETTINGS ================= -->
+            <section id="settingsSection" style="display:none;">
+
+                <div class="card">
+                    <h2>Account Settings</h2>
+
+                    <div class="settings-group">
+                        <label>Full Name</label>
+                        <input type="text" value="Palak">
+                    </div>
+
+                    <div class="settings-group">
+                        <label>Email</label>
+                        <input type="email" value="palak@email.com">
+                    </div>
+
+                    <div class="settings-group">
+                        <label>Password</label>
+                        <input type="password" value="123456">
+                    </div>
+
+                    <div class="settings-actions">
+                        <button class="btn-primary">Save Changes</button>
+                        <button class="btn-secondary">Cancel</button>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                © 2026 ProjectFlow Pro | All Rights Reserved
+            </footer>
+
+        </main>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
